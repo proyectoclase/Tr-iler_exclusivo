@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamNovel Studio | Lanzamiento Exclusivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a233b; 
+            color: #e2e8f0;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .bg-main {
+            background-color: #1a233b;
+        }
+
+        .brand-title {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #ffffff 30%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(79, 172, 254, 0.3));
+        }
+
+        .exclusive-badge {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            padding: 0.6rem 2rem;
+            border-radius: 9999px;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            box-shadow: 0 0 25px rgba(79, 172, 254, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contenedor que reserva el espacio para el logo */
+        .logo-placeholder-box {
+            width: 280px;
+            height: 180px;
+            border: 2px dashed rgba(79, 172, 254, 0.3);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
+            z-index: 10;
+        }
+
+        /* Texto que aparece solo si no hay imagen */
+        .upload-text {
+            position: absolute;
+            font-size: 0.75rem;
+            color: rgba(79, 172, 254, 0.5);
+            text-align: center;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-text {
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="bg-main min-h-screen flex flex-col">
+
+    <!-- Sección Superior: El Hueco del Logo -->
+    <header class="pt-16 pb-8 flex flex-col justify-center items-center w-full space-y-6">
+        <div class="logo-placeholder-box">
+            <!-- Texto de ayuda si la imagen no carga -->
+            <div id="placeholderText" class="upload-text">
+                Esperando <br> <strong>logo.png</strong>
+            </div>
+            
+            <!-- La imagen del logo -->
+            <img src="logo.png" 
+                 id="logoImg"
+                 alt="Logo DreamNovel Studio" 
+                 class="logo-img"
+                 onload="document.getElementById('placeholderText').style.display='none'; this.parentElement.style.border='none'; this.parentElement.style.background='transparent';"
+                 onerror="this.style.display='none';">
+        </div>
+        
+        <h2 class="brand-title text-4xl md:text-6xl font-black tracking-tighter">
+            DreamNovel Studio
+        </h2>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow flex flex-col items-center justify-center px-4 pb-24 text-center">
+        
+        <div class="mb-10">
+            <span class="exclusive-badge text-sm md:text-xl">
+                ESTRENO EN EXCLUSIVA
+            </span>
+        </div>
+
+        <h1 class="hero-text text-5xl md:text-8xl font-black mb-8 tracking-tighter text-white uppercase">
+            Nuevo Tráiler
+        </h1>
+        
+        <p class="text-blue-100 text-lg md:text-2xl max-w-3xl mb-12 opacity-90 font-light italic">
+            "Explora historias inolvidables con nuestro próximo gran proyecto."
+        </p>
+
+        <!-- Reproductor de Video -->
+        <div class="video-container group">
+            <video id="mainVideo" controls poster="https://via.placeholder.com/1920x1080/1a233b/1e293b?text=VisualNovel+Studio+Presenta">
+                <source src="Juego2_trailer.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+            
+            <div id="videoError" class="hidden absolute inset-0 flex items-center justify-center bg-[#1a233b] bg-opacity-95 p-8 text-center">
+                <div>
+                    <svg class="w-20 h-20 text-blue-400 mx-auto mb-6 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-white font-bold text-2xl mb-3">Tráiler no detectado</h3>
+                    <p class="text-blue-300">Coloca <span class="bg-black bg-opacity-40 px-2 py-1 rounded text-white font-mono">Juego2_trailer.mp4</span> en la carpeta.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-20">
+            <button class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-14 py-6 rounded-3xl font-black text-2xl hover:shadow-[0_0_50px_rgba(37,99,235,0.5)] transition-all duration-500 transform hover:-translate-y-2 uppercase tracking-widest">
+                Lista de Deseos
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="py-12 text-center text-blue-300 text-opacity-30 text-sm tracking-widest uppercase">
+        <p>&copy; 2026 DreamNovel Studio. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const video = document.getElementById('mainVideo');
+        const errorMsg = document.getElementById('videoError');
+
+        video.addEventListener('error', function() {
+            errorMsg.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
